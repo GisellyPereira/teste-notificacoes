@@ -92,6 +92,55 @@ function makePoints(cloud, uniforms, scatterRadius = 140) {
   return new THREE.Points(g, m);
 }
 
+// Caminhão (cavalo + carreta) em pontos. Frente aponta para +z.
+function buildTruck(c, mobile) {
+  const V = (x, y, z) => new THREE.Vector3(x, y, z);
+  const E = mobile ? 0.3 : 0.2;
+  const wheel = (x, z, r, color) => {
+    const n = mobile ? 16 : 24;
+    for (const dx of [-0.18, 0.18]) for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2;
+      c.add(x + dx, r + Math.sin(a) * r, z + Math.cos(a) * r, color, 1.15, 1);
+    }
+    c.add(x, r, z, color, 1.6, 1); // cubo da roda
+  };
+  // ---- Carreta (baú) ----
+  c.box(0, 1.25, -2.6, 2.6, 2.9, 13, { edge: mobile ? 0.42 : 0.28, face: mobile ? 80 : 200, color: WHITE, size: 1.15, alpha: 1, faceAlpha: 0.3 });
+  // longarinas sob o baú
+  c.line(V(-0.9, 1.15, -9), V(-0.9, 1.15, 3.8), E * 1.5, WHITE, 0.9, 0.6);
+  c.line(V(0.9, 1.15, -9), V(0.9, 1.15, 3.8), E * 1.5, WHITE, 0.9, 0.6);
+  // pés de apoio
+  for (const x of [-0.9, 0.9]) c.line(V(x, 0.15, 2.4), V(x, 1.15, 2.4), 0.2, WHITE, 0.9, 0.7);
+  // rodas da carreta (eixo duplo traseiro)
+  for (const z of [-7.6, -6.3]) for (const x of [-1.15, 1.15]) wheel(x, z, 0.52, WHITE);
+  // ---- Cavalo mecânico ----
+  // chassi
+  c.line(V(-0.8, 0.9, 3.3), V(-0.8, 0.9, 11.3), E, LIME, 1, 0.9);
+  c.line(V(0.8, 0.9, 3.3), V(0.8, 0.9, 11.3), E, LIME, 1, 0.9);
+  // quinta roda (onde a carreta engata)
+  for (let i = 0; i < 14; i++) { const a = (i / 14) * Math.PI * 2; c.add(Math.cos(a) * 0.6, 1.05, 3.6 + Math.sin(a) * 0.6, LIME, 1, 0.9); }
+  // cabine-leito
+  c.box(0, 1.3, 6.9, 2.5, 2.6, 1.8, { edge: E, face: mobile ? 30 : 70, color: LIME, size: 1.15, alpha: 1, faceAlpha: 0.35 });
+  // cabine
+  c.box(0, 1.3, 8.6, 2.5, 3.0, 1.6, { edge: E, face: mobile ? 30 : 70, color: LIME, size: 1.15, alpha: 1, faceAlpha: 0.35 });
+  // para-brisa inclinado
+  for (const x of [-1.25, 1.25]) c.line(V(x, 4.3, 9.4), V(x, 2.9, 10.0), 0.15, LIME, 1.1, 1);
+  c.line(V(-1.25, 2.9, 10.0), V(1.25, 2.9, 10.0), 0.15, LIME, 1.1, 1);
+  // capô
+  c.box(0, 1.3, 10.65, 2.3, 1.6, 1.3, { edge: E, face: mobile ? 16 : 40, color: LIME, size: 1.1, alpha: 1, faceAlpha: 0.35 });
+  // grade e faróis
+  for (let y = 1.5; y <= 2.7; y += 0.3) c.line(V(-0.7, y, 11.32), V(0.7, y, 11.32), 0.18, LIME, 0.9, 0.8);
+  for (const x of [-0.95, 0.95]) for (let k = 0; k < 6; k++) c.add(x + rand(-0.12, 0.12), 1.75 + rand(-0.08, 0.08), 11.35, WHITE, 2, 1);
+  // escapamentos
+  for (const x of [-1.35, 1.35]) c.line(V(x, 1.4, 7.75), V(x, 4.9, 7.75), 0.15, LIME, 1, 0.9);
+  // defletor de ar no teto
+  c.line(V(-1.2, 4.3, 8.0), V(-1.2, 4.6, 6.4), 0.15, LIME, 1, 0.8);
+  c.line(V(1.2, 4.3, 8.0), V(1.2, 4.6, 6.4), 0.15, LIME, 1, 0.8);
+  c.line(V(-1.2, 4.6, 6.4), V(1.2, 4.6, 6.4), 0.15, LIME, 1, 0.8);
+  // rodas do cavalo: dianteira + tração dupla
+  for (const z of [10.3, 5.4, 4.2]) for (const x of [-1.15, 1.15]) wheel(x, z, 0.55, LIME);
+}
+
 export function createYard(canvas, { mobile = false } = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, powerPreference: 'high-performance' });
   const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
@@ -170,8 +219,7 @@ export function createYard(canvas, { mobile = false } = {}) {
   const truckCount = mobile ? 3 : 4;
   for (let i = 0; i < truckCount; i++) {
     const c = new Cloud();
-    c.box(0, 0.6, -2.5, 2.6, 3.7, 12, { edge: mobile ? 0.5 : 0.32, face: mobile ? 90 : 220, color: WHITE, size: 1.2, alpha: 1 });
-    c.box(0, 0.4, 6.6, 2.6, 3.2, 4.2, { edge: 0.3, face: 70, color: LIME, size: 1.25, alpha: 1 });
+    buildTruck(c, mobile);
     const t = makePoints(c, uniforms, 30);
     scene.add(t);
     trucks.push({ obj: t, offset: i / truckCount, speed: 0.018 + i * 0.002 });
