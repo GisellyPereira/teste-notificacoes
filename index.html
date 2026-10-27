@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Doca — Inteligência para pátios logísticos</title>
+  <meta name="description" content="A Doca conecta portão, pátio e doca em um sistema único e automatizado com IA. Marca fictícia de demonstração." />
+  <meta name="theme-color" content="#07090b" />
+  <meta property="og:title" content="Doca — Inteligência para pátios logísticos" />
+  <meta property="og:image" content="/img/hero.webp" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2307090b'/><rect x='14' y='18' width='36' height='28' rx='3' fill='none' stroke='%23D4FF3F' stroke-width='5'/><rect x='22' y='30' width='20' height='16' fill='%23D4FF3F'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="/img/hero.webp" media="(min-width: 721px)" />
+  <link rel="preload" as="image" href="/img/hero-mobile.webp" media="(max-width: 720px)" />
+</head>
+<body>
+  <header class="nav" data-nav>
+    <a href="#top" class="logo" aria-label="Doca, início">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="8" width="22" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="2.6"/><rect x="10" y="15" width="12" height="10" fill="var(--lime)"/></svg>
+      <span>Doca</span>
+    </a>
+    <nav class="nav__menu" aria-label="Principal">
+      <a href="#plataforma">Plataforma</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#modulos">Módulos</a>
+      <a href="#resultados">Resultados</a>
+    </nav>
+    <div class="nav__actions">
+      <a href="#contato" class="nav__login">Entrar</a>
+      <a href="#contato" class="btn btn--lime">Agendar demo</a>
+      <button class="nav__burger" aria-label="Abrir menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </header>
+  <div class="mobile-menu" aria-hidden="true">
+    <a href="#plataforma">Plataforma</a><a href="#clientes">Clientes</a><a href="#modulos">Módulos</a><a href="#resultados">Resultados</a>
+    <a href="#contato" class="btn btn--lime">Agendar demo</a>
+  </div>
+
+  <main id="top">
+    <!-- 1. HERO: foto + frase revelada pelo scroll -->
+    <section class="hero" data-hero>
+      <div class="hero__sticky">
+        <picture class="hero__media" data-hero-media>
+          <source media="(max-width: 720px)" srcset="/img/hero-mobile.webp" />
+          <img src="/img/hero.webp" alt="Caminhão atravessando um pátio logístico ao pôr do sol, com galpão e docas ao fundo" width="1376" height="768" />
+        </picture>
+        <div class="hero__shade" data-hero-shade></div>
+        <div class="hero__content">
+          <p class="eyebrow" data-hero-eyebrow><span class="dot"></span>Plataforma de pátio com IA</p>
+          <h1 class="hero__title" data-reveal-words>Reinventamos o futuro da logística a partir do pátio.</h1>
+        </div>
+        <div class="hero__scroll" data-hero-scroll><span>Role</span><i></i></div>
+      </div>
+    </section>
+
+    <!-- 2. PÁTIO 3D -->
+    <section class="yard" id="plataforma" data-yard>
+      <div class="yard__sticky">
+        <canvas class="yard__canvas" data-yard-canvas aria-label="Visualização 3D de um pátio logístico em nuvem de pontos" role="img"></canvas>
+        <div class="yard__labels" data-yard-labels aria-hidden="true"></div>
+        <div class="yard__copy">
+          <p class="yard__line" data-yard-line="0">Tecnologia nativa em IA</p>
+          <p class="yard__line" data-yard-line="1">que conecta tudo entre o portão e a doca</p>
+          <p class="yard__line" data-yard-line="2">em um único sistema, conectado e automatizado.</p>
+        </div>
+        <div class="yard__hud" aria-hidden="true">
+          <div><span>Veículos no pátio</span><b data-hud="vehicles">0</b></div>
+          <div><span>Docas ativas</span><b data-hud="docks">0</b></div>
+          <div><span>Tempo médio portão→doca</span><b data-hud="time">00:00</b></div>
+        </div>
+        <div class="yard__progress" aria-hidden="true"><i data-yard-progress></i></div>
+      </div>
+    </section>
+
+    <!-- 3. CLIENTES -->
+    <section class="clients" id="clientes">
+      <h2 class="clients__title" data-split>Movimentando os pátios<br />das marcas que você conhece</h2>
+      <div class="logos" data-logos>
+        <div class="logos__row" data-logo-row>
+          <span class="lg lg--serif">VINCO.</span><span class="lg lg--wide">NORTEAR</span><span class="lg lg--round">fresca</span><span class="lg lg--mono">ATLAS/09</span><span class="lg lg--heavy">KARGO</span><span class="lg lg--light">berkley &amp; co</span><span class="lg lg--italic">Moinho</span><span class="lg lg--wide">SALINA</span>
+        </div>
+        <div class="logos__row logos__row--rev" data-logo-row>
+          <span class="lg lg--heavy">TRAMA</span><span class="lg lg--serif">Orvalho</span><span class="lg lg--mono">PÓLO_LOG</span><span class="lg lg--round">quintal</span><span class="lg lg--light">RIOBRANCO</span><span class="lg lg--italic">Brasa</span><span class="lg lg--wide">MERIDIA</span><span class="lg lg--heavy">ÚNICA</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. MÓDULOS -->
+    <section class="modules" id="modulos">
+      <div class="sec-head">
+        <p class="eyebrow eyebrow--dark"><span class="dot"></span>Módulos</p>
+        <h2 class="sec-title" data-split>Do portão à doca,<br />sem pontos cegos.</h2>
+      </div>
+      <div class="mods">
+        <article class="mod" data-card>
+          <div class="mod__viz" aria-hidden="true"><svg viewBox="0 0 200 120"><rect x="20" y="30" width="20" height="70" class="s"/><rect x="160" y="30" width="20" height="70" class="s"/><path d="M40 40 H160" class="s dash"/><rect class="scan" x="40" y="38" width="4" height="62"/></svg></div>
+          <span class="mod__n">01</span>
+          <h3>Portão inteligente</h3>
+          <p>Leitura de placa e de contêiner por câmera. O caminhão entra sem parar e já recebe a doca no celular.</p>
+          <b class="mod__metric">−70% no tempo de check-in</b>
+        </article>
+        <article class="mod" data-card>
+          <div class="mod__viz" aria-hidden="true"><svg viewBox="0 0 200 120"><g class="grid"><rect x="20" y="20" width="30" height="16"/><rect x="60" y="20" width="30" height="16"/><rect x="100" y="20" width="30" height="16" class="on"/><rect x="140" y="20" width="30" height="16"/><rect x="20" y="52" width="30" height="16" class="on"/><rect x="60" y="52" width="30" height="16"/><rect x="100" y="52" width="30" height="16"/><rect x="140" y="52" width="30" height="16" class="on"/><rect x="20" y="84" width="30" height="16"/><rect x="60" y="84" width="30" height="16" class="on"/><rect x="100" y="84" width="30" height="16"/><rect x="140" y="84" width="30" height="16"/></g></svg></div>
+          <span class="mod__n">02</span>
+          <h3>Pátio em tempo real</h3>
+          <p>Cada carreta localizada no mapa, ao vivo. Chega de rondas com prancheta procurando o trailer certo.</p>
+          <b class="mod__metric">100% do pátio visível</b>
+        </article>
+        <article class="mod" data-card>
+          <div class="mod__viz" aria-hidden="true"><svg viewBox="0 0 200 120"><rect x="20" y="20" width="160" height="30" class="s"/><g class="docks"><rect x="30" y="50" width="22" height="50"/><rect x="62" y="50" width="22" height="50" class="on"/><rect x="94" y="50" width="22" height="50"/><rect x="126" y="50" width="22" height="50" class="on"/><rect x="158" y="50" width="12" height="50"/></g></svg></div>
+          <span class="mod__n">03</span>
+          <h3>Docas orquestradas</h3>
+          <p>A IA distribui carga e descarga pela prioridade de cada pedido e avisa a equipe antes do caminhão encostar.</p>
+          <b class="mod__metric">+38% de giro nas docas</b>
+        </article>
+        <article class="mod" data-card>
+          <div class="mod__viz" aria-hidden="true"><svg viewBox="0 0 200 120"><polyline class="line" points="10,95 40,80 70,86 100,55 130,62 160,30 190,38"/><circle class="pt" cx="160" cy="30" r="5"/></svg></div>
+          <span class="mod__n">04</span>
+          <h3>Inteligência operacional</h3>
+          <p>Previsão de filas, gargalos e detenção de carretas antes que virem custo. Tudo em um painel.</p>
+          <b class="mod__metric">−45% em multas de detenção</b>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. RESULTADOS -->
+    <section class="results" id="resultados">
+      <img class="results__bg" src="/img/dock.webp" alt="Docas de um galpão logístico à noite, com carretas encostadas e luz quente saindo das portas" loading="lazy" width="1376" height="768" />
+      <div class="results__shade"></div>
+      <div class="results__inner">
+        <p class="eyebrow"><span class="dot"></span>Resultados</p>
+        <h2 class="sec-title" data-split>Menos espera.<br />Mais carga andando.</h2>
+        <div class="stats">
+          <div class="stat"><b><span data-counter="70">0</span>%</b><span>mais rápido no check-in de portão</span></div>
+          <div class="stat"><b><span data-counter="38">0</span>%</b><span>de aumento no giro das docas</span></div>
+          <div class="stat"><b><span data-counter="2.4" data-decimals="1">0</span>M</b><span>movimentações de pátio por mês</span></div>
+          <div class="stat"><b><span data-counter="120">0</span>+</b><span>centros de distribuição conectados</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CTA -->
+    <section class="cta" id="contato">
+      <h2 class="cta__title" data-split>Seu pátio,<br />no piloto automático.</h2>
+      <p data-fade>Veja em 30 minutos como a Doca funcionaria na sua operação.</p>
+      <form class="cta__form" data-fade onsubmit="event.preventDefault(); this.classList.add('is-sent');">
+        <label class="sr" for="email">Seu e-mail de trabalho</label>
+        <input id="email" type="email" required placeholder="seu@empresa.com.br" autocomplete="email" />
+        <button class="btn btn--lime" type="submit">Agendar demo</button>
+        <span class="cta__ok" role="status">Pronto! Entraremos em contato. (demonstração)</span>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <a href="#top" class="logo logo--big" aria-label="Doca, voltar ao início">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="8" width="22" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="2.6"/><rect x="10" y="15" width="12" height="10" fill="var(--lime)"/></svg><span>Doca</span>
+      </a>
+      <div class="footer__cols">
+        <div><b>Plataforma</b><a href="#modulos">Portão</a><a href="#modulos">Pátio</a><a href="#modulos">Docas</a><a href="#modulos">Inteligência</a></div>
+        <div><b>Empresa</b><a href="#clientes">Clientes</a><a href="#resultados">Resultados</a><a href="#contato">Contato</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Doca — marca fictícia para demonstração</span><span>São Paulo · Fortaleza</span></div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
